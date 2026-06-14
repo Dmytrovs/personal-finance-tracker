@@ -2,6 +2,8 @@
   display: flex;
   gap: clamp(0.625rem, 0.3977rem + 1.1364vw, 1.25rem); /* 20/10>1200-320 */
   text-align: center;
+  padding-bottom: .875rem;
+   border-bottom: .0625rem solid var(--light-gray);
 }
 
 .card {

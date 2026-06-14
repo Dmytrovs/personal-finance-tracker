@@ -1,0 +1,177 @@
+.wrapper {
+  width: 100%;
+  padding: 0.875rem 0;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--gunmetal);
+  margin-bottom: 0.75rem;
+}
+
+.tableCardContainer {
+  width: 100%;
+  border: 0.0625rem solid var(--light-gray);
+  border-radius: 0.375rem;
+  overflow: hidden;
+}
+
+.tableResponsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  background-color: var(--light-gray-blue);
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  font-size: 0.9375rem;
+  border-bottom: 0.0625rem solid var(--light-gray);
+}
+
+.row {
+  border-bottom: 0.0625rem solid var(--light-gray);
+  transition: background-color 0.15s ease;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.row:hover {
+  background-color: #f9fafb;
+}
+
+.table td {
+  padding: 0.875rem 16px;
+  font-size: 0.9375rem;
+  vertical-align: middle;
+}
+
+.dateCell {
+  color: var(--cool-gray);
+}
+
+.descCell {
+  font-weight: 500;
+  color: var(--gunmetal);
+}
+
+.amountCell {
+  font-weight: 600;
+}
+
+.typeCell {
+  font-weight: 500;
+}
+
+.income,
+.incomeText {
+  color: var(--forest-green);
+}
+
+.expense,
+.expenseText {
+  color: var(--strong-red);
+}
+
+.actionsHeader {
+  width: 6.25rem;
+}
+
+.buttonsCell {
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  align-items: center;
+  border-left: 0.0625rem solid var(--light-gray);
+}
+
+.actionBtn {
+  /* background: none; */
+  /* border: none; */
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.editBtn {
+  color: var(--azure-blue);
+}
+
+.editBtn:hover {
+  transform: scale(1.1);
+}
+
+.deleteBtn {
+  color: var(--strong-red);
+}
+
+.deleteBtn:hover {
+  transform: scale(1.1);
+}
+
+.tableFooterActions {
+  width: 100%;
+  background-color: var(--gray-100);
+  border-top: 0.0625rem solid var(--light-gray);
+  padding: 0.75rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.footerBtn {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.5rem 2rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 8.125rem;
+}
+
+.footerBtn:active {
+  transform: scale(0.98);
+}
+
+.footerBtnEdit {
+  border: 0.0625rem solid var(--light-gray);
+  color: var(--dark-grey);
+  background-color: var(--white);
+}
+
+.footerBtnEdit:hover {
+  background-color: var(--light-gray);
+  border-color: var(--dark-grey);
+  color: var(--gunmetal);
+}
+
+.footerBtnDelete {
+  background-color: var(--bg-expense-btn);
+  border: 0.0625rem solid var(--light-gray);
+  color: var(--white);
+}
+
+.footerBtnDelete:hover {
+  background-color: var(--bg-expense-hover);
+  border-color: var(--dark-grey);
+  color: var(--light-gray-blue);
+}
+
+
+
+@media (max-width: 480px) {
+    .tableFooterActions {
+        flex-direction: column;
+        gap: .5rem;
+        padding: .75rem 1rem;
+    }
+}

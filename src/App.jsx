@@ -1,6 +1,8 @@
 import Header from "./components/Header/Header";
 import BalanceAndForm from "./components/BalanceAndForm/BalanceAndForm";
-import StatsCards from './components/StatsCards/StatsCards'
+import StatsCards from "./components/StatsCards/StatsCards";
+import TransactionTable from "./components/TransactionTable/TransactionTable";
+import ActionButtonClearAll from "./components/ActionButtonClearAll/ActionButtonClearAll";
 import styles from "./App.module.css";
 
 function App() {
@@ -10,6 +12,8 @@ function App() {
       <div className="container">
         <BalanceAndForm />
         <StatsCards />
+        <TransactionTable />
+        <ActionButtonClearAll />
       </div>
     </>
   );

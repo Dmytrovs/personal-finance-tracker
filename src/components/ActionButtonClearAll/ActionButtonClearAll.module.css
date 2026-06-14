@@ -1,0 +1,35 @@
+.clearAllWrapper {
+  margin-top: 1.5rem;
+  margin-top: clamp(0.75rem, 0.4773rem + 1.3636vw, 1.5rem); /* 24/12>1200-320 */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.btnClearAll {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 0.625rem 3rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  border: 0.0625rem solid var(--light-gray);
+  color: var(--dark-grey);
+  transition: all 0.3s ease;
+  background: linear-gradient(
+    45deg,
+    var(--gray-100) 0%,
+    var(--light-gray) 100%
+  );
+}
+
+.btnClearAll:hover {
+  background: linear-gradient(
+    180deg,
+    var(--gray-100) 0%,
+    var(--light-gray) 100%
+  );
+  border-color: var(--dark-grey);
+  color: var(--gunmetal);
+}
+
