@@ -1,0 +1,9 @@
+.header {
+    background-color: #3875bd;
+    color: var(--white);
+    text-align: center;
+    padding: var(--padding-16-0);
+    font-size: var(--fz-header-0);
+    width: 100%;
+    font-weight: 900;
+}

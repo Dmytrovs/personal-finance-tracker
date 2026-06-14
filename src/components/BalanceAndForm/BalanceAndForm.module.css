@@ -1,0 +1,120 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.balance {
+  width: 100%;
+  font-size: var(--fz-22-18-0);
+  font-weight: 600;
+  color: var(--dark-grey);
+  padding: 0.875rem 0;
+  border-bottom: 0.0625rem solid var(--light-gray);
+  text-align: center;
+}
+
+.balanceAmount {
+  color: var(--forest-green);
+  font-weight: 700;
+}
+
+.formRow {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.875rem 0;
+  /* width: 100%; */
+}
+
+.blockInput {
+  display: flex;
+  gap: 0.75rem;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.inputWrapper {
+  position: relative;
+  flex: 1;
+  min-width: 150px;
+}
+
+.input {
+  width: 100%;
+  padding: 0.625rem 2.1875rem 0.625rem 0.75rem;
+  border: 0.0625rem solid var(--light-gray);
+  border-radius: 0.5rem;
+}
+/* Cleaning arкows Chrome, Safari, Edge, Opera */
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+/* Cleaning arкows Firefox */
+.input {
+    appearance: textfield;
+}
+
+
+.currencySymbol {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--steel-gray);
+  font-weight: 600;
+}
+
+.inputDesc {
+  flex: 2;
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  border: 0.0625rem solid var(--light-gray);
+  border-radius: 0.5rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  color: var(--white);
+  transition: background-color 0.3s;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.btnIncome {
+  background-color: var(--bg-income-btn);
+}
+
+.btnIncome:hover {
+  background-color: var(--bg-income-hover);
+}
+
+.btnExpence {
+  background-color: var(--bg-expense-btn);
+}
+
+.btnExpence:hover {
+  background-color: var(--bg-expense-hover);
+}
+
+@media (max-width: 767.98px) {
+  .formRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+
+@media (max-width: 550px) {
+  .blockInput {
+    flex-direction: column;
+  }
+}
