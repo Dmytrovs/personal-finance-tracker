@@ -1,6 +1,25 @@
+import { useState } from "react";
 import styles from "./BalanceAndForm.module.css";
 
-const BalanceAndForm = () => {
+const BalanceAndForm = ({ onAddTransaction }) => {
+  const [amount, setAmount] = useState("");
+  const [description, setDescription] = useState("");
+
+  //temp function for handling button clicks
+  const handleAddTransaction = (type) => {
+    if (!amount) return;
+
+    onAddTransaction({
+      amount: Number(amount),
+      description: description || "No description",
+      type: type, // 'Income' or 'Expense'
+    });
+
+    //Clearing the fields after sending
+    setAmount("");
+    setDescription("");
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.balance}>
@@ -14,6 +33,8 @@ const BalanceAndForm = () => {
               type="number"
               placeholder="Enter Amount"
               className={styles.input}
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
             />
             <span className={styles.currencySymbol}>$</span>
           </div>
@@ -22,14 +43,22 @@ const BalanceAndForm = () => {
             type="text"
             placeholder="Enter Description"
             className={styles.inputDesc}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </div>
 
         <div className={styles.actions}>
-          <button className={`${styles.btn} ${styles.btnIncome}`}>
+          <button
+            className={`${styles.btn} ${styles.btnIncome}`}
+            onClick={() => handleAddTransaction("Income")}
+          >
             Add Income
           </button>
-          <button className={`${styles.btn} ${styles.btnExpence}`}>
+          <button
+            className={`${styles.btn} ${styles.btnExpense}`}
+            onClick={() => handleAddTransaction("Expense")}
+          >
             Add Expense
           </button>
         </div>

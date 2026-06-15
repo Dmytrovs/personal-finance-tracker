@@ -1,38 +1,6 @@
 import styles from "./TransactionTable.module.css";
 
-const TransactionTable = () => {
-  // Temp Arrow
-  const dummyTransactions = [
-    {
-      id: 1,
-      date: "10/15/2026",
-      desc: "Groceries",
-      amount: 100.0,
-      type: "Expense",
-    },
-    {
-      id: 2,
-      date: "10/14/2026",
-      desc: "Salary",
-      amount: 2000.0,
-      type: "Income",
-    },
-    {
-      id: 3,
-      date: "10/12/2026",
-      desc: "Movie Tickets",
-      amount: 50.0,
-      type: "Expense",
-    },
-    {
-      id: 4,
-      date: "10/10/2026",
-      desc: "Freelance Work",
-      amount: 150.0,
-      type: "Income",
-    },
-  ];
-
+const TransactionTable = ({ transactions }) => {
   return (
     <div className={styles.wrapper}>
       <h3 className={styles.title}>Transaction History</h3>
@@ -51,13 +19,13 @@ const TransactionTable = () => {
             </thead>
 
             <tbody>
-              {dummyTransactions.map((t) => {
+              {transactions.map((t) => {
                 const isExpense = t.type === "Expense";
 
                 return (
                   <tr key={t.id} className={styles.row}>
                     <td className={styles.dateCell}>{t.date}</td>
-                    <td className={styles.descCell}>{t.desc}</td>
+                    <td className={styles.descCell}>{t.description}</td>
                     <td
                       className={`${styles.amountCell} ${isExpense ? styles.expense : styles.income}`}
                     >
@@ -121,8 +89,12 @@ const TransactionTable = () => {
         </div>
 
         <div className={styles.tableFooterActions}>
-          <button className={`${styles.footerBtn} ${styles.footerBtnEdit}`}>Edit</button>
-          <button className={`${styles.footerBtn} ${styles.footerBtnDelete}`}>Delete</button>
+          <button className={`${styles.footerBtn} ${styles.footerBtnEdit}`}>
+            Edit
+          </button>
+          <button className={`${styles.footerBtn} ${styles.footerBtnDelete}`}>
+            Delete
+          </button>
         </div>
       </div>
     </div>
