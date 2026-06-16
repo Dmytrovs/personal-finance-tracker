@@ -62,7 +62,10 @@ function App() {
     setTransactions([transactionWithId, ...transactions]);
   };
 
- 
+  const deleteTransaction = (id) => {
+    const updatedTransactions = transactions.filter((transaction) => transaction.id !== id)
+    setTransactions(updatedTransactions)
+  }
 
   return (
     <>
@@ -70,7 +73,7 @@ function App() {
       <div className="container">
         <BalanceAndForm onAddTransaction={addTransaction} currentBalance={currentBalance} />
         <StatsCards totalIncome={totalIncome}  totalExpense={totalExpense}/>
-        <TransactionTable transactions={transactions} />
+        <TransactionTable transactions={transactions} onDeleteTransaction={deleteTransaction} />
         <ActionButtonClearAll />
       </div>
     </>

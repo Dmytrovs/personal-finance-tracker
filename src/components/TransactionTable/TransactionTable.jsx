@@ -1,6 +1,6 @@
 import styles from "./TransactionTable.module.css";
 
-const TransactionTable = ({ transactions }) => {
+const TransactionTable = ({ transactions, onDeleteTransaction }) => {
   return (
     <div className={styles.wrapper}>
       <h3 className={styles.title}>Transaction History</h3>
@@ -63,6 +63,7 @@ const TransactionTable = ({ transactions }) => {
                       <button
                         className={`${styles.actionBtn} ${styles.deleteBtn} ${styles.icondelete}`}
                         title="Delete"
+                        onClick={() => onDeleteTransaction(t.id)}
                       >
                         <svg
                           width="24"
