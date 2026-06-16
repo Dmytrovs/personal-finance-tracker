@@ -38,11 +38,11 @@ function App() {
     },
   ]);
 
-   const totalIncome = transactions
+  const totalIncome = transactions
     .filter((transaction) => transaction.type === "Income")
     .reduce((sum, transaction) => sum + transaction.amount, 0);
 
-   const totalExpense = transactions
+  const totalExpense = transactions
     .filter((transaction) => transaction.type === "Expense")
     .reduce((sum, transaction) => sum + transaction.amount, 0);
 
@@ -63,18 +63,30 @@ function App() {
   };
 
   const deleteTransaction = (id) => {
-    const updatedTransactions = transactions.filter((transaction) => transaction.id !== id)
-    setTransactions(updatedTransactions)
-  }
+    const updatedTransactions = transactions.filter(
+      (transaction) => transaction.id !== id,
+    );
+    setTransactions(updatedTransactions);
+  };
+
+  const clearAllTransactions = () => {
+    setTransactions([]);
+  };
 
   return (
     <>
       <Header />
       <div className="container">
-        <BalanceAndForm onAddTransaction={addTransaction} currentBalance={currentBalance} />
-        <StatsCards totalIncome={totalIncome}  totalExpense={totalExpense}/>
-        <TransactionTable transactions={transactions} onDeleteTransaction={deleteTransaction} />
-        <ActionButtonClearAll />
+        <BalanceAndForm
+          onAddTransaction={addTransaction}
+          currentBalance={currentBalance}
+        />
+        <StatsCards totalIncome={totalIncome} totalExpense={totalExpense} />
+        <TransactionTable
+          transactions={transactions}
+          onDeleteTransaction={deleteTransaction}
+        />
+        <ActionButtonClearAll onClearAllTransactions={clearAllTransactions} />
       </div>
     </>
   );
