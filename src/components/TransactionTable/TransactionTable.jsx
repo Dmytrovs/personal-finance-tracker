@@ -1,6 +1,12 @@
 import styles from "./TransactionTable.module.css";
 
-const TransactionTable = ({ transactions, onDeleteTransaction }) => {
+const TransactionTable = ({
+  transactions,
+  onDeleteTransaction,
+  selectedId,
+  onSelectTransaction,
+  onDeleteSelected,
+}) => {
   return (
     <div className={styles.wrapper}>
       <h3 className={styles.title}>Transaction History</h3>
@@ -22,8 +28,14 @@ const TransactionTable = ({ transactions, onDeleteTransaction }) => {
               {transactions.map((t) => {
                 const isExpense = t.type === "Expense";
 
+                const isSelected = t.id === selectedId;
+
                 return (
-                  <tr key={t.id} className={styles.row}>
+                  <tr
+                    key={t.id}
+                    className={`${styles.row} ${isSelected ? styles.selectedRow : ""}`}
+                    onClick={() => onSelectTransaction(t.id)}
+                  >
                     <td className={styles.dateCell}>{t.date}</td>
                     <td className={styles.descCell}>{t.description}</td>
                     <td
@@ -63,7 +75,10 @@ const TransactionTable = ({ transactions, onDeleteTransaction }) => {
                       <button
                         className={`${styles.actionBtn} ${styles.deleteBtn} ${styles.icondelete}`}
                         title="Delete"
-                        onClick={() => onDeleteTransaction(t.id)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onDeleteTransaction(t.id);
+                        }}
                       >
                         <svg
                           width="24"
@@ -93,7 +108,10 @@ const TransactionTable = ({ transactions, onDeleteTransaction }) => {
           <button className={`${styles.footerBtn} ${styles.footerBtnEdit}`}>
             Edit
           </button>
-          <button className={`${styles.footerBtn} ${styles.footerBtnDelete}`}>
+          <button className={`${styles.footerBtn} ${styles.footerBtnDelete}`}
+          onClick={onDeleteSelected}
+          disabled={selectedId === null}
+          style={{opacity: selectedId === null ? 0.5 : 1, cursor: selectedId === null ? 'not-allowed' : 'pointer'}}>
             Delete
           </button>
         </div>

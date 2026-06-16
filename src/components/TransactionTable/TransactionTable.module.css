@@ -39,6 +39,7 @@
 .row {
   border-bottom: 0.0625rem solid var(--light-gray);
   transition: background-color 0.15s ease;
+  cursor: pointer;
 }
 
 .row:last-child {
@@ -47,6 +48,14 @@
 
 .row:hover {
   background-color: #f9fafb;
+}
+
+.selectedRow {
+  background-color: var(--zumthor-selected);
+}
+
+.selectedRow:hover {
+  background-color: var(--zumthor-selected-hover);
 }
 
 .table td {
@@ -166,12 +175,10 @@
   color: var(--light-gray-blue);
 }
 
-
-
 @media (max-width: 480px) {
-    .tableFooterActions {
-        flex-direction: column;
-        gap: .5rem;
-        padding: .75rem 1rem;
-    }
+  .tableFooterActions {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+  }
 }

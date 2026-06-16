@@ -105,7 +105,8 @@ textarea {
   --bg-income-hover: #176119;
   --bg-expense-btn: #d4341e;
   --bg-expense-hover: #912314;
-
+  --zumthor-selected: #eff6ff;
+   --zumthor-selected-hover: #dbeafe;
 }
 
 .container {

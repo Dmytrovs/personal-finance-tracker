@@ -38,6 +38,12 @@ function App() {
     },
   ]);
 
+  const [selectedId, setSelectedId] = useState(null);
+
+  const handleSelectTransaction = (id) => {
+    setSelectedId((prevId) => (prevId === id ? null : id));
+  };
+
   const totalIncome = transactions
     .filter((transaction) => transaction.type === "Income")
     .reduce((sum, transaction) => sum + transaction.amount, 0);
@@ -62,15 +68,26 @@ function App() {
     setTransactions([transactionWithId, ...transactions]);
   };
 
+  // Deleting a specific line
   const deleteTransaction = (id) => {
-    const updatedTransactions = transactions.filter(
-      (transaction) => transaction.id !== id,
+    setTransactions(
+      transactions.filter((transaction) => transaction.id !== id),
     );
-    setTransactions(updatedTransactions);
+    if (selectedId === id) setSelectedId(null);
+  };
+
+  // Delete function for the big Delete button in the table footer
+  const deleteSelectedTransaction = () => {
+    if (selectedId === null) return;
+    setTransactions(
+      transactions.filter((transaction) => transaction.id !== selectedId),
+    );
+    setSelectedId(null);
   };
 
   const clearAllTransactions = () => {
     setTransactions([]);
+    setSelectedId(null);
   };
 
   return (
@@ -85,6 +102,9 @@ function App() {
         <TransactionTable
           transactions={transactions}
           onDeleteTransaction={deleteTransaction}
+          selectedId={selectedId}
+          onSelectTransaction={handleSelectTransaction}
+          onDeleteSelected={deleteSelectedTransaction}
         />
         <ActionButtonClearAll onClearAllTransactions={clearAllTransactions} />
       </div>
