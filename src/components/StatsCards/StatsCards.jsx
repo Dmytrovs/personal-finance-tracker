@@ -1,13 +1,13 @@
 import styles from "./StatsCards.module.css";
 
-const StatsCards = () => {
+const StatsCards = ({ totalIncome, totalExpense }) => {
   return (
     <div className={styles.statsContainer}>
       {/*  Income Card */}
       <div className={styles.card}>
         <h2 className={styles.cardTitle}>Total Income</h2>
         <div className={`${styles.cardAmount} ${styles.income}`}>
-          + $2,000.00
+          +${totalIncome.toFixed(2)}
         </div>
       </div>
 
@@ -15,7 +15,7 @@ const StatsCards = () => {
       <div className={styles.card}>
         <h2 className={styles.cardTitle}>Total Expense</h2>
         <div className={`${styles.cardAmount} ${styles.expense}`}>
-          – $750.00
+          -${totalExpense.toFixed(2)}
         </div>
       </div>
     </div>

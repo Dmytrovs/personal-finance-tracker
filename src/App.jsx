@@ -7,7 +7,6 @@ import ActionButtonClearAll from "./components/ActionButtonClearAll/ActionButton
 import styles from "./App.module.css";
 
 function App() {
-
   const [transactions, setTransactions] = useState([
     {
       id: 1,
@@ -37,30 +36,41 @@ function App() {
       amount: 150.0,
       type: "Income",
     },
-  ])
+  ]);
+
+   const totalIncome = transactions
+    .filter((transaction) => transaction.type === "Income")
+    .reduce((sum, transaction) => sum + transaction.amount, 0);
+
+   const totalExpense = transactions
+    .filter((transaction) => transaction.type === "Expense")
+    .reduce((sum, transaction) => sum + transaction.amount, 0);
+
+  const currentBalance = totalIncome - totalExpense;
 
   const addTransaction = (newTransaction) => {
     const today = new Date();
-    const formattedDate = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`
+    const formattedDate = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
 
     //Creating a transaction object
     const transactionWithId = {
       id: Date.now(),
       date: formattedDate,
       ...newTransaction,
-    }
+    };
 
-    setTransactions([transactionWithId, ...transactions])
+    setTransactions([transactionWithId, ...transactions]);
+  };
 
-  }
+ 
 
   return (
     <>
       <Header />
       <div className="container">
-        <BalanceAndForm onAddTransaction={addTransaction} />
-        <StatsCards />
-        <TransactionTable  transactions={transactions}/>
+        <BalanceAndForm onAddTransaction={addTransaction} currentBalance={currentBalance} />
+        <StatsCards totalIncome={totalIncome}  totalExpense={totalExpense}/>
+        <TransactionTable transactions={transactions} />
         <ActionButtonClearAll />
       </div>
     </>

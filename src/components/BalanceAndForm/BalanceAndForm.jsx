@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./BalanceAndForm.module.css";
 
-const BalanceAndForm = ({ onAddTransaction }) => {
+const BalanceAndForm = ({ onAddTransaction, currentBalance }) => {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
 
@@ -23,7 +23,7 @@ const BalanceAndForm = ({ onAddTransaction }) => {
   return (
     <div className={styles.container}>
       <div className={styles.balance}>
-        Current Balance: <span className={styles.balanceAmount}>$1250</span>
+        Current Balance: <span className={styles.balanceAmount}>{currentBalance >= 0 ? `$${currentBalance.toFixed(2)}` : `-$${Math.abs(currentBalance.toFixed(2))}`}</span>
       </div>
 
       <div className={styles.formRow}>
