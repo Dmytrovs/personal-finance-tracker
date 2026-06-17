@@ -1,4 +1,7 @@
 import styles from "./TransactionTable.module.css";
+import { FaPlus } from "react-icons/fa6";
+import { FaPencil } from "react-icons/fa6";
+import { FaRegTrashCan } from "react-icons/fa6";
 
 const TransactionTable = ({
   transactions,
@@ -7,6 +10,21 @@ const TransactionTable = ({
   onSelectTransaction,
   onDeleteSelected,
 }) => {
+  if (transactions.length === 0) {
+    return (
+      <div className={styles.wrapper}>
+        <h3 className={styles.title}>Transaction History</h3>
+        <div className={styles.emptyState}>
+          <FaPlus className={styles.emptyIcon} />
+          <p className={styles.emptyText}>No transactions yet</p>
+          <p className={styles.emptySubtext}>
+            Add your first income or expense above to start tracking!
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.wrapper}>
       <h3 className={styles.title}>Transaction History</h3>
@@ -37,7 +55,9 @@ const TransactionTable = ({
                     onClick={() => onSelectTransaction(t.id)}
                   >
                     <td className={styles.dateCell}>{t.date}</td>
-                    <td className={styles.descCell}>{t.description || t.desc}</td>
+                    <td className={styles.descCell}>
+                      {t.description || t.desc}
+                    </td>
                     <td
                       className={`${styles.amountCell} ${isExpense ? styles.expense : styles.income}`}
                     >
@@ -56,19 +76,7 @@ const TransactionTable = ({
                         className={`${styles.actionBtn} ${styles.editBtn}`}
                         title="Edit"
                       >
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                        </svg>
+                        <FaPencil className={styles.iconActionBtn} />
                       </button>
 
                       {/* delete button red */}
@@ -80,21 +88,7 @@ const TransactionTable = ({
                           onDeleteTransaction(t.id);
                         }}
                       >
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <polyline points="3 6 5 6 21 6"></polyline>
-                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                          <line x1="10" y1="11" x2="10" y2="17"></line>
-                          <line x1="14" y1="11" x2="14" y2="17"></line>
-                        </svg>
+                        <FaRegTrashCan className={styles.iconActionBtn} />
                       </button>
                     </td>
                   </tr>
@@ -112,7 +106,7 @@ const TransactionTable = ({
               opacity: selectedId === null ? 0.5 : 1,
               cursor: selectedId === null ? "not-allowed" : "pointer",
             }}
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             Edit
           </button>

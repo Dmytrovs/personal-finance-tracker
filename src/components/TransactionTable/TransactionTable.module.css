@@ -8,6 +8,7 @@
   font-weight: 600;
   color: var(--gunmetal);
   margin-bottom: 0.75rem;
+  text-align: center;
 }
 
 .tableCardContainer {
@@ -105,26 +106,29 @@
 }
 
 .actionBtn {
-  /* background: none; */
-  /* border: none; */
   cursor: pointer;
   transition: all 0.2s ease;
+  width: 100%;
 }
 
 .editBtn {
   color: var(--azure-blue);
 }
 
-.editBtn:hover {
-  transform: scale(1.1);
+
+
+.iconActionBtn {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.iconActionBtn:hover {
+    transform: scale(1.1);
 }
 
 .deleteBtn {
   color: var(--strong-red);
-}
-
-.deleteBtn:hover {
-  transform: scale(1.1);
 }
 
 .tableFooterActions {
@@ -173,6 +177,37 @@
   background-color: var(--bg-expense-hover);
   border-color: var(--dark-grey);
   color: var(--light-gray-blue);
+}
+
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-block: clamp(1.25rem, 0.7955rem + 2.2727vw, 2.5rem); /* 40/20>1200-320 */
+  padding-inline: clamp(0.625rem, 0.3977rem + 1.1364vw, 1.25rem); /* 20/10>1200-320 */
+  border: .125rem dashed var(--light-gray);
+  border-radius: .75rem;
+  text-align: center;
+}
+
+.emptyText {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.emptySubtext {
+  font-size: .875rem;
+  color: var(--cool-gray);
+  max-width: 300px;
+}
+
+.emptyIcon {
+  width: 4rem;
+  height: 4rem;
+  color: var( --steel-gray);
 }
 
 @media (max-width: 480px) {

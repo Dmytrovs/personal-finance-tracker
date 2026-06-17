@@ -9,46 +9,15 @@ import styles from "./App.module.css";
 function App() {
   const [transactions, setTransactions] = useState(() => {
     const savedTransactions = localStorage.getItem("budget_transactions");
-    return savedTransactions
-      ? JSON.parse(savedTransactions)
-      : [
-          {
-            id: 1,
-            date: "10/15/2026",
-            desc: "Groceries",
-            amount: 100.0,
-            type: "Expense",
-          },
-          {
-            id: 2,
-            date: "10/14/2026",
-            desc: "Salary",
-            amount: 2000.0,
-            type: "Income",
-          },
-          {
-            id: 3,
-            date: "10/12/2026",
-            desc: "Movie Tickets",
-            amount: 50.0,
-            type: "Expense",
-          },
-          {
-            id: 4,
-            date: "10/10/2026",
-            desc: "Freelance Work",
-            amount: 150.0,
-            type: "Income",
-          },
-        ];
+    return savedTransactions ? JSON.parse(savedTransactions) : [];
   });
 
   const [selectedId, setSelectedId] = useState(null);
 
   // Updating localStorage when transactions change
   useEffect(() => {
-    localStorage.setItem('budget_transactions', JSON.stringify(transactions))
-  }, [transactions])
+    localStorage.setItem("budget_transactions", JSON.stringify(transactions));
+  }, [transactions]);
 
   // Finding the selected transaction item
   const editingTransaction =
@@ -135,7 +104,7 @@ function App() {
           onSelectTransaction={handleSelectTransaction}
           onDeleteSelected={deleteSelectedTransaction}
         />
-        <ActionButtonClearAll onClearAllTransactions={clearAllTransactions} />
+        {transactions.length > 0 ? ( <ActionButtonClearAll onClearAllTransactions={clearAllTransactions} />) : null}
       </div>
     </>
   );
