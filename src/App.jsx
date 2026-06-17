@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header/Header";
 import BalanceAndForm from "./components/BalanceAndForm/BalanceAndForm";
 import StatsCards from "./components/StatsCards/StatsCards";
@@ -7,38 +7,48 @@ import ActionButtonClearAll from "./components/ActionButtonClearAll/ActionButton
 import styles from "./App.module.css";
 
 function App() {
-  const [transactions, setTransactions] = useState([
-    {
-      id: 1,
-      date: "10/15/2026",
-      desc: "Groceries",
-      amount: 100.0,
-      type: "Expense",
-    },
-    {
-      id: 2,
-      date: "10/14/2026",
-      desc: "Salary",
-      amount: 2000.0,
-      type: "Income",
-    },
-    {
-      id: 3,
-      date: "10/12/2026",
-      desc: "Movie Tickets",
-      amount: 50.0,
-      type: "Expense",
-    },
-    {
-      id: 4,
-      date: "10/10/2026",
-      desc: "Freelance Work",
-      amount: 150.0,
-      type: "Income",
-    },
-  ]);
+  const [transactions, setTransactions] = useState(() => {
+    const savedTransactions = localStorage.getItem("budget_transactions");
+    return savedTransactions
+      ? JSON.parse(savedTransactions)
+      : [
+          {
+            id: 1,
+            date: "10/15/2026",
+            desc: "Groceries",
+            amount: 100.0,
+            type: "Expense",
+          },
+          {
+            id: 2,
+            date: "10/14/2026",
+            desc: "Salary",
+            amount: 2000.0,
+            type: "Income",
+          },
+          {
+            id: 3,
+            date: "10/12/2026",
+            desc: "Movie Tickets",
+            amount: 50.0,
+            type: "Expense",
+          },
+          {
+            id: 4,
+            date: "10/10/2026",
+            desc: "Freelance Work",
+            amount: 150.0,
+            type: "Income",
+          },
+        ];
+  });
 
   const [selectedId, setSelectedId] = useState(null);
+
+  // Updating localStorage when transactions change
+  useEffect(() => {
+    localStorage.setItem('budget_transactions', JSON.stringify(transactions))
+  }, [transactions])
 
   // Finding the selected transaction item
   const editingTransaction =
@@ -47,11 +57,14 @@ function App() {
   // Function to save the edited transaction
   const updateTransaction = (updatedTransaction) => {
     setTransactions(
-      transactions.map((transaction) => (transaction.id === updatedTransaction.id ? updatedTransaction : transaction))
+      transactions.map((transaction) =>
+        transaction.id === updatedTransaction.id
+          ? updatedTransaction
+          : transaction,
+      ),
     );
-    setSelectedId(null); 
+    setSelectedId(null);
   };
-  
 
   const handleSelectTransaction = (id) => {
     setSelectedId((prevId) => (prevId === id ? null : id));
