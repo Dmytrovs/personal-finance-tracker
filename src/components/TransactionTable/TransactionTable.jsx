@@ -37,13 +37,13 @@ const TransactionTable = ({
                     onClick={() => onSelectTransaction(t.id)}
                   >
                     <td className={styles.dateCell}>{t.date}</td>
-                    <td className={styles.descCell}>{t.description}</td>
+                    <td className={styles.descCell}>{t.description || t.desc}</td>
                     <td
                       className={`${styles.amountCell} ${isExpense ? styles.expense : styles.income}`}
                     >
                       {isExpense
-                        ? `-$${t.amount.toFixed(2)}`
-                        : `+$${t.amount.toFixed(2)}`}
+                        ? `-$${(t.amount || 0).toFixed(2)}`
+                        : `+$${(t.amount || 0).toFixed(2)}`}
                     </td>
                     <td
                       className={`${styles.typeCell} ${isExpense ? styles.expenseText : styles.incomeText}`}
@@ -105,13 +105,26 @@ const TransactionTable = ({
         </div>
 
         <div className={styles.tableFooterActions}>
-          <button className={`${styles.footerBtn} ${styles.footerBtnEdit}`}>
+          <button
+            className={`${styles.footerBtn} ${styles.footerBtnEdit}`}
+            disabled={selectedId === null}
+            style={{
+              opacity: selectedId === null ? 0.5 : 1,
+              cursor: selectedId === null ? "not-allowed" : "pointer",
+            }}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          >
             Edit
           </button>
-          <button className={`${styles.footerBtn} ${styles.footerBtnDelete}`}
-          onClick={onDeleteSelected}
-          disabled={selectedId === null}
-          style={{opacity: selectedId === null ? 0.5 : 1, cursor: selectedId === null ? 'not-allowed' : 'pointer'}}>
+          <button
+            className={`${styles.footerBtn} ${styles.footerBtnDelete}`}
+            onClick={onDeleteSelected}
+            disabled={selectedId === null}
+            style={{
+              opacity: selectedId === null ? 0.5 : 1,
+              cursor: selectedId === null ? "not-allowed" : "pointer",
+            }}
+          >
             Delete
           </button>
         </div>

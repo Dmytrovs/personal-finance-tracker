@@ -40,6 +40,19 @@ function App() {
 
   const [selectedId, setSelectedId] = useState(null);
 
+  // Finding the selected transaction item
+  const editingTransaction =
+    transactions.find((transaction) => transaction.id === selectedId) || null;
+
+  // Function to save the edited transaction
+  const updateTransaction = (updatedTransaction) => {
+    setTransactions(
+      transactions.map((transaction) => (transaction.id === updatedTransaction.id ? updatedTransaction : transaction))
+    );
+    setSelectedId(null); 
+  };
+  
+
   const handleSelectTransaction = (id) => {
     setSelectedId((prevId) => (prevId === id ? null : id));
   };
@@ -97,6 +110,9 @@ function App() {
         <BalanceAndForm
           onAddTransaction={addTransaction}
           currentBalance={currentBalance}
+          editingTransaction={editingTransaction}
+          onUpdateTransaction={updateTransaction}
+          onCancelEdit={() => setSelectedId(null)}
         />
         <StatsCards totalIncome={totalIncome} totalExpense={totalExpense} />
         <TransactionTable
